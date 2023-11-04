@@ -11,6 +11,13 @@
 		D7F987882AF40FDA00CF3FA0 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7F987872AF40FDA00CF3FA0 /* ContentView.swift */; };
 		D7F9878A2AF40FDC00CF3FA0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D7F987892AF40FDC00CF3FA0 /* Assets.xcassets */; };
 		D7F9878D2AF40FDC00CF3FA0 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D7F9878C2AF40FDC00CF3FA0 /* Preview Assets.xcassets */; };
+		D7F987942AF4133800CF3FA0 /* ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7F987932AF4133800CF3FA0 /* ViewModel.swift */; };
+		D7F987972AF41CD400CF3FA0 /* OpenAIKit in Frameworks */ = {isa = PBXBuildFile; productRef = D7F987962AF41CD400CF3FA0 /* OpenAIKit */; };
+		D7F9879A2AF47A1B00CF3FA0 /* OpenAISwift in Frameworks */ = {isa = PBXBuildFile; productRef = D7F987992AF47A1B00CF3FA0 /* OpenAISwift */; };
+		D7F9879E2AF4869600CF3FA0 /* TopicView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7F9879D2AF4869600CF3FA0 /* TopicView.swift */; };
+		D7F987A02AF5817200CF3FA0 /* Response.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7F9879F2AF5817200CF3FA0 /* Response.swift */; };
+		D7F987A22AF5F50000CF3FA0 /* QuestionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7F987A12AF5F50000CF3FA0 /* QuestionView.swift */; };
+		D7F987A42AF5F5C500CF3FA0 /* Topic.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7F987A32AF5F5C500CF3FA0 /* Topic.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -19,6 +26,11 @@
 		D7F987872AF40FDA00CF3FA0 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		D7F987892AF40FDC00CF3FA0 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D7F9878C2AF40FDC00CF3FA0 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		D7F987932AF4133800CF3FA0 /* ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModel.swift; sourceTree = "<group>"; };
+		D7F9879D2AF4869600CF3FA0 /* TopicView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopicView.swift; sourceTree = "<group>"; };
+		D7F9879F2AF5817200CF3FA0 /* Response.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Response.swift; sourceTree = "<group>"; };
+		D7F987A12AF5F50000CF3FA0 /* QuestionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionView.swift; sourceTree = "<group>"; };
+		D7F987A32AF5F5C500CF3FA0 /* Topic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Topic.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -26,6 +38,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D7F9879A2AF47A1B00CF3FA0 /* OpenAISwift in Frameworks */,
+				D7F987972AF41CD400CF3FA0 /* OpenAIKit in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -52,7 +66,12 @@
 			isa = PBXGroup;
 			children = (
 				D7F987852AF40FDA00CF3FA0 /* aiCodeQuizApp.swift */,
+				D7F987A32AF5F5C500CF3FA0 /* Topic.swift */,
+				D7F9879F2AF5817200CF3FA0 /* Response.swift */,
+				D7F987932AF4133800CF3FA0 /* ViewModel.swift */,
+				D7F9879D2AF4869600CF3FA0 /* TopicView.swift */,
 				D7F987872AF40FDA00CF3FA0 /* ContentView.swift */,
+				D7F987A12AF5F50000CF3FA0 /* QuestionView.swift */,
 				D7F987892AF40FDC00CF3FA0 /* Assets.xcassets */,
 				D7F9878B2AF40FDC00CF3FA0 /* Preview Content */,
 			);
@@ -83,6 +102,10 @@
 			dependencies = (
 			);
 			name = aiCodeQuiz;
+			packageProductDependencies = (
+				D7F987962AF41CD400CF3FA0 /* OpenAIKit */,
+				D7F987992AF47A1B00CF3FA0 /* OpenAISwift */,
+			);
 			productName = aiCodeQuiz;
 			productReference = D7F987822AF40FDA00CF3FA0 /* aiCodeQuiz.app */;
 			productType = "com.apple.product-type.application";
@@ -111,6 +134,10 @@
 				Base,
 			);
 			mainGroup = D7F987792AF40FDA00CF3FA0;
+			packageReferences = (
+				D7F987952AF41CD400CF3FA0 /* XCRemoteSwiftPackageReference "OpenAI" */,
+				D7F987982AF47A1B00CF3FA0 /* XCRemoteSwiftPackageReference "OpenAISwift" */,
+			);
 			productRefGroup = D7F987832AF40FDA00CF3FA0 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -137,8 +164,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D7F9879E2AF4869600CF3FA0 /* TopicView.swift in Sources */,
 				D7F987882AF40FDA00CF3FA0 /* ContentView.swift in Sources */,
+				D7F987942AF4133800CF3FA0 /* ViewModel.swift in Sources */,
 				D7F987862AF40FDA00CF3FA0 /* aiCodeQuizApp.swift in Sources */,
+				D7F987A22AF5F50000CF3FA0 /* QuestionView.swift in Sources */,
+				D7F987A02AF5817200CF3FA0 /* Response.swift in Sources */,
+				D7F987A42AF5F5C500CF3FA0 /* Topic.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -344,6 +376,38 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		D7F987952AF41CD400CF3FA0 /* XCRemoteSwiftPackageReference "OpenAI" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/FuturraGroup/OpenAI.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.6.0;
+			};
+		};
+		D7F987982AF47A1B00CF3FA0 /* XCRemoteSwiftPackageReference "OpenAISwift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/adamrushy/OpenAISwift.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.4.1;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		D7F987962AF41CD400CF3FA0 /* OpenAIKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = D7F987952AF41CD400CF3FA0 /* XCRemoteSwiftPackageReference "OpenAI" */;
+			productName = OpenAIKit;
+		};
+		D7F987992AF47A1B00CF3FA0 /* OpenAISwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = D7F987982AF47A1B00CF3FA0 /* XCRemoteSwiftPackageReference "OpenAISwift" */;
+			productName = OpenAISwift;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = D7F9877A2AF40FDA00CF3FA0 /* Project object */;
 }

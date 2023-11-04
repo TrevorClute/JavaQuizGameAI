@@ -6,14 +6,44 @@
 //
 
 import SwiftUI
+import OpenAISwift
+
+
+func question(from prompt:String) -> String {
+    return(
+    """
+     your goal is to create a multiple choice question about \(prompt) in the java coding language. Output your response as JSON in this format:
+     {
+     "question": "",
+     "a":"correct answer",
+     "b":"incorrect answer",
+     "c":"incorrect answer",
+     "d":"incorrect answer"
+     }
+    """
+    )
+}
 
 struct ContentView: View {
+    @State var path = NavigationPath()
+    
     var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundStyle(.tint)
-            Text("Hello, world!")
+        NavigationStack(path: $path) {
+            GeometryReader{ proxy in
+                ScrollView{
+                    LazyVGrid(columns: [GridItem(.fixed(proxy.size.width * 0.48)),GridItem(.fixed(proxy.size.width * 0.48))]){
+                        ForEach(Topic.all) { topic in
+                            
+                            TopicView(topic: topic, width: proxy.size.width * 0.48, height: proxy.size.height * 0.2)
+                                .onTapGesture {
+                                    path.append(topic)
+                            }
+                        }
+                    }
+                }
+            }
+            
+    
         }
         .padding()
     }
@@ -22,3 +52,16 @@ struct ContentView: View {
 #Preview {
     ContentView()
 }
+
+
+/*
+ 
+ your goal is to create a multiple choice question about \() in the java coding language. Output your response as JSON in this format:
+ {
+ "question": "",
+ "a":"correct answer",
+ "b":"incorrect answer",
+ "c":"incorrect answer",
+ "d":"incorrect answer"
+ }
+*/
