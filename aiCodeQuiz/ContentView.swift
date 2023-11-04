@@ -9,20 +9,7 @@ import SwiftUI
 import OpenAISwift
 
 
-func question(from prompt:String) -> String {
-    return(
-    """
-     your goal is to create a multiple choice question about \(prompt) in the java coding language. Output your response as JSON in this format:
-     {
-     "question": "",
-     "a":"correct answer",
-     "b":"incorrect answer",
-     "c":"incorrect answer",
-     "d":"incorrect answer"
-     }
-    """
-    )
-}
+
 
 struct ContentView: View {
     @State var path = NavigationPath()
@@ -33,7 +20,6 @@ struct ContentView: View {
                 ScrollView{
                     LazyVGrid(columns: [GridItem(.fixed(proxy.size.width * 0.48)),GridItem(.fixed(proxy.size.width * 0.48))]){
                         ForEach(Topic.all) { topic in
-                            
                             TopicView(topic: topic, width: proxy.size.width * 0.48, height: proxy.size.height * 0.2)
                                 .onTapGesture {
                                     path.append(topic)
@@ -41,6 +27,10 @@ struct ContentView: View {
                         }
                     }
                 }
+            }
+            .navigationDestination(for: Topic.self){ topic in
+                QuestionView(topic: topic)
+                    .navigationBarBackButtonHidden()
             }
             
     

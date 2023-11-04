@@ -30,14 +30,13 @@ struct TopicView: View {
             VStack(alignment: .leading, spacing:0){
                 Text(topic.name)
                     .foregroundStyle(topic.colors[1])
-                    .shadow(color:topic.colors[0],radius: 7, x: 5, y: 3)
-                    .font(.system(size: width * 0.2, weight: .bold, design: .rounded))
-                    .fontWeight(.black)
+                    .shadow(color:topic.colors[0],radius: 7, x: 0, y: 0)
+                    .font(.title2.smallCaps())
                     .frame(maxWidth: .infinity, alignment: .topLeading)
                 Text(topic.description)
                     .frame(width: width * 0.7,alignment: .topLeading)
                     .frame(maxWidth: .infinity, maxHeight: .infinity,alignment:.topLeading)
-                    .font(.system(size: width * 0.10,weight: .light, design: .rounded))
+                    .font(.system(size: width * 0.07,weight: .light, design: .rounded).smallCaps())
                     .foregroundStyle(topic.colors[0])
                     .colorMultiply(Color(white: 1))
                     
