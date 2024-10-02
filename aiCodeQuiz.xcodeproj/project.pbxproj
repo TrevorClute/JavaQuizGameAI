@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		D762AD272CADE20300B256A4 /* SwiftOpenAI in Frameworks */ = {isa = PBXBuildFile; productRef = D762AD262CADE20300B256A4 /* SwiftOpenAI */; };
+		D762AD292CADEDF700B256A4 /* .env in Resources */ = {isa = PBXBuildFile; fileRef = D762AD282CADEDF700B256A4 /* .env */; };
 		D7F987862AF40FDA00CF3FA0 /* aiCodeQuizApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7F987852AF40FDA00CF3FA0 /* aiCodeQuizApp.swift */; };
 		D7F987882AF40FDA00CF3FA0 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7F987872AF40FDA00CF3FA0 /* ContentView.swift */; };
 		D7F9878A2AF40FDC00CF3FA0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D7F987892AF40FDC00CF3FA0 /* Assets.xcassets */; };
@@ -21,6 +22,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		D762AD282CADEDF700B256A4 /* .env */ = {isa = PBXFileReference; lastKnownFileType = text; path = .env; sourceTree = "<group>"; };
 		D7F987822AF40FDA00CF3FA0 /* aiCodeQuiz.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = aiCodeQuiz.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D7F987852AF40FDA00CF3FA0 /* aiCodeQuizApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = aiCodeQuizApp.swift; sourceTree = "<group>"; };
 		D7F987872AF40FDA00CF3FA0 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -56,6 +58,7 @@
 		D7F987792AF40FDA00CF3FA0 = {
 			isa = PBXGroup;
 			children = (
+				D762AD282CADEDF700B256A4 /* .env */,
 				D7F987842AF40FDA00CF3FA0 /* aiCodeQuiz */,
 				D7F987832AF40FDA00CF3FA0 /* Products */,
 				D70B8AAE2CADC06500BF8CA7 /* Frameworks */,
@@ -159,6 +162,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D762AD292CADEDF700B256A4 /* .env in Resources */,
 				D7F9878D2AF40FDC00CF3FA0 /* Preview Assets.xcassets in Resources */,
 				D7F9878A2AF40FDC00CF3FA0 /* Assets.xcassets in Resources */,
 			);

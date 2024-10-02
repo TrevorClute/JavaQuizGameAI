@@ -22,8 +22,8 @@ class ViewModel: ObservableObject {
     var tool:ChatCompletionParameters.Tool?
     
     func setup(){
-        let apikey = "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"
-        service = OpenAIServiceFactory.service(apiKey: apikey)
+        let apikey = ProcessInfo.processInfo.environment["API_KEY"]
+        service = OpenAIServiceFactory.service(apiKey: apikey!)
         tool = ChatCompletionParameters.Tool(function: .init(name: "Question", strict: true, description: "for creating question object", parameters: questionSchema))
     }
     
