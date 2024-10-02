@@ -6,25 +6,36 @@
 //
 
 import Foundation
-import OpenAISwift
+import SwiftOpenAI
 
 
 class ViewModel: ObservableObject {
     init(){}
-    private var client:OpenAISwift?
+    var service:OpenAIService?
+    let questionSchema = JSONSchema(type: .object, properties:[
+        "question" : JSONSchema(type: .string),
+        "a" : JSONSchema(type: .string),
+        "b" : JSONSchema(type: .string),
+        "c" : JSONSchema(type: .string),
+        "d" : JSONSchema(type: .string),
+    ], required: ["question", "a", "b", "c", "d"], additionalProperties: false)
+    var tool:ChatCompletionParameters.Tool?
     
     func setup(){
-        client = OpenAISwift(config: .makeDefaultOpenAI(apiKey: "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"))
+        let apikey = "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"
+        service = OpenAIServiceFactory.service(apiKey: apikey)
+        tool = ChatCompletionParameters.Tool(function: .init(name: "Question", strict: true, description: "for creating question object", parameters: questionSchema))
     }
-    func send(text:String, completion: @escaping (String)->Void){
-        client?.sendCompletion(with: text, maxTokens:500){result in
-            switch result{
-            case .success(let model):
-                let output = model.choices?.first?.text ?? "-"
-                completion(output)
-            case .failure(let error):
-                print(error.localizedDescription)
-                break
+    
+    func send(text:String, completion: @escaping (String)->Void) {
+        let parameters = ChatCompletionParameters(messages: [.init(role: .user, content: .text(text))], model: .gpt35Turbo)
+        Task{
+            do{
+                let choices = try await service!.startChat(parameters: parameters).choices
+                completion(choices[0].message.content ?? "")
+            }
+            catch{
+                print(error)
             }
         }
     }

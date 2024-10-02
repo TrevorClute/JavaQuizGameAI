@@ -1,23 +1,15 @@
 {
+  "originHash" : "4d5b735fb4ce761349124a905586c7ffe2d7474b2b2a43b5c210bec311d7c12f",
   "pins" : [
     {
-      "identity" : "openai",
+      "identity" : "swiftopenai",
       "kind" : "remoteSourceControl",
-      "location" : "https://github.com/FuturraGroup/OpenAI.git",
+      "location" : "https://github.com/jamesrochabrun/SwiftOpenAI",
       "state" : {
-        "revision" : "74c56d6eacec84434f172b25b0918331801325cd",
-        "version" : "1.6.0"
-      }
-    },
-    {
-      "identity" : "openaiswift",
-      "kind" : "remoteSourceControl",
-      "location" : "https://github.com/adamrushy/OpenAISwift.git",
-      "state" : {
-        "revision" : "ca66fb720d6ebb657601db5a0852b830ae310a4c",
-        "version" : "1.4.1"
+        "revision" : "bc84564bd72d2adff9f9c3372dad3af827cb1d08",
+        "version" : "3.8.1"
       }
     }
   ],
-  "version" : 2
+  "version" : 3
 }

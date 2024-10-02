@@ -29,7 +29,7 @@ struct TopicView: View {
                 .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topTrailing)
             VStack(alignment: .leading, spacing:0){
                 Text(topic.name)
-                    .foregroundStyle(topic.colors[1])
+                    .foregroundStyle(topic.colors[0])
                     .shadow(color:topic.colors[0],radius: 7, x: 0, y: 0)
                     .font(.title2.smallCaps())
                     .frame(maxWidth: .infinity, alignment: .topLeading)
@@ -51,6 +51,7 @@ struct TopicView: View {
             )
             .opacity(0.3)
         )
+        .underlay(view: Rectangle().fill(.black))
         .clipShape(.rect(cornerRadius: 10))
         .frame(width: width, height: height)
         
@@ -61,4 +62,11 @@ struct TopicView: View {
     TopicView(topic: Topic.all[1], width: 130, height: 130)
 }
 
-
+extension View {
+    func underlay<T: View>(view:T) -> some View {
+        return view
+            .overlay{
+                self
+            }
+    }
+}

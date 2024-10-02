@@ -18,14 +18,41 @@ struct ContentView: View {
         NavigationStack(path: $path) {
             GeometryReader{ proxy in
                 ScrollView{
-                    LazyVGrid(columns: [GridItem(.fixed(proxy.size.width * 0.48)),GridItem(.fixed(proxy.size.width * 0.48))]){
-                        ForEach(Topic.all) { topic in
-                            TopicView(topic: topic, width: proxy.size.width * 0.48, height: proxy.size.height * 0.2)
-                                .onTapGesture {
-                                    path.append(topic)
+                    VStack{
+                        HStack{
+                            Text("mr.cooper AI")
+                                .font(.largeTitle.smallCaps().bold())
+                                .padding(.leading)
+                            Spacer()
+                            Image("java")
+                                .resizable()
+                                .scaledToFit()
+                                .frame(width: proxy.size.width * 0.2, height: proxy.size.height * 0.08)
+                        }
+                        
+                    }
+                    
+                    VStack(alignment: .leading){
+                        Text("select topic")
+                            .foregroundStyle(.secondary)
+                            .font(.callout.smallCaps())
+                            .padding(.leading,5)
+                        LazyVGrid(columns: [GridItem(.fixed(proxy.size.width * 0.44)),GridItem(.fixed(proxy.size.width * 0.44))]){
+                            ForEach(Topic.all) { topic in
+                                TopicView(topic: topic, width: proxy.size.width * 0.44, height: proxy.size.height * 0.2)
+                                    .onTapGesture {
+                                        path.append(topic)
+                                }
+                                
                             }
                         }
                     }
+                    .padding()
+                    .padding(.vertical)
+                    .padding(.bottom)
+                    .background(.regularMaterial)
+                    .clipShape(.rect(cornerRadius: 10))
+                    
                 }
             }
             .navigationDestination(for: Topic.self){ topic in

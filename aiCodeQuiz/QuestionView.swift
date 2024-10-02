@@ -19,38 +19,44 @@ struct QuestionView: View {
             return answers
         }
         return [
-            Answer(key: "a", answer: "loading", isCorrect: false),
-            Answer(key: "b", answer: "loading", isCorrect: false),
-            Answer(key: "c", answer: "loading", isCorrect: false),
-            Answer(key: "d", answer: "loading", isCorrect: false)
+            Answer(key: "a", answer: "loading...", isCorrect: false),
+            Answer(key: "b", answer: "loading...", isCorrect: false),
+            Answer(key: "c", answer: "loading...", isCorrect: false),
+            Answer(key: "d", answer: "loading...", isCorrect: false)
         ]
     }
     var body: some View {
         GeometryReader{ proxy in
-
-
                 VStack(alignment:.leading){
-                    
-                    HStack{
-                        Text(topic.name)
-                            .font(.system(size: proxy.size.width * 0.12).bold())
-                        topic.image
-                            .resizable()
-                            .scaledToFit()
-                            .frame(width: proxy.size.width * 0.12, height: proxy.size.height * 0.05)
-                        Spacer()
-                        
-                    }
-                    .frame(maxWidth: .infinity,alignment:.leading)
-                    
-                    Text(question?.question ?? "loading")
-                        .padding()
-                        .frame(maxWidth: .infinity)
-                        .frame(height: proxy.size.height * 0.2,alignment:.topLeading)
-                        .overlay{
-                            RoundedRectangle(cornerRadius: 15)
-                                .stroke()
+                    VStack(spacing:10){
+                        HStack{
+                            Text(topic.name.uppercased())
+                                .foregroundStyle(topic.colors[0])
+                                .font(.system(size: proxy.size.width * 0.09))
+                                .fontWeight(.bold)
+                            topic.image
+                                .resizable()
+                                .foregroundStyle(topic.colors[0])
+                                .scaledToFit()
+                                .frame(width: proxy.size.width * 0.12, height: proxy.size.height * 0.05)
+                            Spacer()
+                            
                         }
+                        .frame(maxWidth: .infinity,alignment:.leading)
+                        
+                        Text(question?.question ?? "loading...")
+                            .font(.title3)
+                            .fontDesign(.rounded)
+                            .padding(.top,5)
+                            .padding()
+                            .frame(maxWidth: .infinity)
+                            .frame(height: proxy.size.height * 0.2,alignment:.topLeading)
+                            .background(.regularMaterial)
+                            .clipShape(.rect(cornerRadius: 15))
+                    }
+                    .padding(7)
+                    .background(LinearGradient(colors: topic.colors, startPoint: .topLeading, endPoint: .bottomTrailing).opacity(0.4))
+                    .clipShape(.rect(cornerRadius: 15))
                     
                     ScrollView{
                         ForEach(answers) { answer in
@@ -63,21 +69,47 @@ struct QuestionView: View {
                     Spacer()
                     
                     HStack{
-                        Button{
-                            dismiss()
-                        } label: {
-                            Text("exit")
+                            HStack{
+                                Image(systemName: "arrow.left")
+                                Text("exit")
+                                    .font(.callout.smallCaps())
+                            }
+                            .frame(maxWidth: .infinity, alignment: .center)
+                            .frame(height: proxy.size.height * 0.07)
+                            .overlay{
+                                Capsule()
+                                    .stroke(lineWidth: 3)
+                            }
+                            .foregroundStyle(.red)
+                            .onTapGesture {
+                                dismiss()
+                            }
+                        
+                        
+                        Rectangle()
+                            .frame(height: 1)
+                            .frame(maxWidth: .infinity)
+                            .hidden()
+                        
+
+                        HStack{
+                            Text("next")
+                                .font(.callout.smallCaps())
+                            Image(systemName: "arrow.right")
                         }
-                        
-                        Spacer()
-                        
-                        Button{
+                        .frame(maxWidth: .infinity, alignment: .center)
+                        .frame(height: proxy.size.height * 0.07)
+                        .overlay{
+                            Capsule()
+                                .stroke(lineWidth: 3)
+                        }
+                        .foregroundStyle(.blue)
+                        .onTapGesture {
                             answered = false
                             question = Question.loading
                             send()
-                        } label: {
-                            Text("next")
                         }
+                        
                     }
                     .padding(.bottom, proxy.size.height * 0.05)
                     
@@ -94,10 +126,16 @@ struct QuestionView: View {
     }
     
     func send(){
-        viewModel.send(text: question(from: topic.prompt)){ response in
+        viewModel.send(text: question(from:topic.prompt)){ response in
             DispatchQueue.main.async {
                 self.response = response
-                question = try? JSONDecoder().decode(Question.self, from: response.data(using: .utf8)!)
+                do{
+                    
+                    question = try JSONDecoder().decode(Question.self, from: response.data(using: .utf8)!)
+                }
+                catch{
+                    print(error)
+                }
             }
         }
     }
@@ -147,12 +185,12 @@ struct AnswerView:View {
                 .padding(.trailing)
             Text(answer.answer)
                 .frame(maxWidth: .infinity,alignment: .leading)
-            
+            Image(systemName: (isRevealed ? (answer.isCorrect ? "checkmark" : "xmark" ) : ""))
         }
         .padding()
         .frame(maxWidth: .infinity,maxHeight: .infinity)
         .background((isRevealed || correctReveal) ? color : .secondary.opacity(0.2))
-        .clipShape(.rect(cornerRadius: ((isRevealed || correctReveal) ? 10 : 30)))
+        .clipShape(.rect(cornerRadius: ((isRevealed || correctReveal) ? 10 : 15)))
         .onTapGesture {
             if answered {
                 return
